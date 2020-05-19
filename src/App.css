@@ -7,3 +7,17 @@
 .bold {
   font-weight: bold;
 }
+
+.button {
+  background-color: green;
+  color: white;
+  font: inherit;
+  border: 2px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.button:hover {
+  background-color: lightgreen;
+  color: black;
+}
