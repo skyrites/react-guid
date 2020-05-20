@@ -4,6 +4,8 @@ import classes from './App.css';
 
 import Person from './Person/Person';
 
+import ErrorBoundary from './ErrorBoundary/errorBoundary';
+
 class App extends Component {
   state = {
     persons: [
@@ -48,20 +50,6 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   };
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '2px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      borderRadius: '4px',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black',
-      },
-    };
-
     let persons = null;
 
     if (this.state.showPersons) {
@@ -69,13 +57,14 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return (
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.nameChangedHandler(event, person.id)}
-              />
+              <ErrorBoundary key={person.id}>
+                <Person
+                  click={() => this.deletePersonHandler(index)}
+                  name={person.name}
+                  age={person.age}
+                  changed={(event) => this.nameChangedHandler(event, person.id)}
+                />
+              </ErrorBoundary>
             );
           })}
         </div>
